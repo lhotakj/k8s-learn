@@ -29,6 +29,24 @@ curl http://localhost:5000/v2/_catalog
 microk8s kubectl apply -f ./kubernetes/deployment.yaml
 ```
 
+
+```
+sudo microk8s kubectl apply -f ./db/mysql-pv.yaml
+sudo microk8s kubectl apply -f ./db/mysql-deployment.yaml
+```
+
+## debug
+
+```
+microk8s kubectl describe deployment mysql
+```
+
+## connect to db by creating a pod with running mysql client container
+```
+sudo microk8s kubectl run -it --rm --image=mysql:5.6 --restart=Never mysql-client -- mysql -h mysql -ppassword
+```
+
+
 # Destroy
 ```
 microk8s kubectl delete -n default deployment python-app-deployment
