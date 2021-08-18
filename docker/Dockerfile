@@ -5,7 +5,7 @@ WORKDIR /app
 ADD . /app/
 # RUN pip install -r requirements.txt
 
-COPY requirements.txt /tmp/
+COPY app/requirements.txt /tmp/
 RUN pip install --requirement /tmp/requirements.txt
 COPY . /tmp/
 
