@@ -1,6 +1,7 @@
 # Simple python app deployed on microk8s cluster
 Very simple web app in python deployed on microk8s cluster
-TODO: nginx
+
+(!) TODO: nginx
 
 
 ## Run local registry
