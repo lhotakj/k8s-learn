@@ -52,3 +52,32 @@ sudo microk8s kubectl run -it --rm --image=mysql:5.6 --restart=Never mysql-clien
 ```
 microk8s kubectl delete -n default deployment python-app-deployment
 ```
+
+# Refresh certs
+microk8s refresh-certs
+
+# Recommended setup
+```
+sudo sh -c "echo -n '{\n    "insecure-registries" : ["localhost:32000"] \n}\n' > /etc/docker/daemon.json"
+sudo systemctl restart docker
+sudo iptables -P FORWARD ACCEPT 
+sudo apt-get install iptables-persistent
+```
+
+
+# Initial setup
+microk8s.enable dashboard
+
+token=$(microk8s kubectl -n kube-system get secret | grep default-token | cut -d " " -f1)
+microk8s kubectl -n kube-system describe secret $token
+
+## how to get URL:
+
+```
+microk8s kubectl describe service/kubernetes-dashboard -n kube-system
+```
+
+or run proxy
+```
+microk8s dashboard-proxy
+```
