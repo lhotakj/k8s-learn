@@ -25,7 +25,6 @@ curl http://localhost:5000/v2/_catalog
 ```
 
 # Deploy
-
 ```
 microk8s kubectl apply -f ./kubernetes/deployment.yaml
 ```
@@ -37,7 +36,6 @@ sudo microk8s kubectl apply -f ./db/mysql-deployment.yaml
 ```
 
 ## debug
-
 ```
 microk8s kubectl describe deployment mysql
 ```
@@ -47,14 +45,15 @@ microk8s kubectl describe deployment mysql
 sudo microk8s kubectl run -it --rm --image=mysql:5.6 --restart=Never mysql-client -- mysql -h mysql -ppassword
 ```
 
-
 # Destroy
 ```
 microk8s kubectl delete -n default deployment python-app-deployment
 ```
 
 # Refresh certs
+```
 microk8s refresh-certs
+```
 
 # Recommended setup
 ```
@@ -66,13 +65,13 @@ sudo apt-get install iptables-persistent
 
 
 # Initial setup
+```
 microk8s.enable dashboard
-
 token=$(microk8s kubectl -n kube-system get secret | grep default-token | cut -d " " -f1)
 microk8s kubectl -n kube-system describe secret $token
+````
 
 ## how to get URL:
-
 ```
 microk8s kubectl describe service/kubernetes-dashboard -n kube-system
 ```
